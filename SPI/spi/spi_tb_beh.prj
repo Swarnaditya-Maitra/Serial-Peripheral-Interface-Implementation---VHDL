@@ -1,0 +1,2 @@
+vhdl work "spi_67.vhd"
+vhdl work "spi_tb.vhd"

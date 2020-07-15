@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/SWARNADITYA/Desktop/SPI/spi/spi_tb_isim_beh.exe" -prj "C:/Users/SWARNADITYA/Desktop/SPI/spi/spi_tb_beh.prj" "work.spi_tb" 

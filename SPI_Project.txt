@@ -1,0 +1,64 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity SPI is
+
+   port( clk: in std_logic;
+ 	 SPIE: in std_logic; 
+ 	 x: in std_logic;
+	 SPIF: out std_logic; 
+ 	 Output: out std_logic_vector(15 downto 0);
+ 	 Input: in std_logic_vector(15 downto 0);
+	 SPDRM: out std_logic_vector(7 downto 0);
+	 SPDRS: out std_logic_vector(7 downto 0) );
+
+end SPI;
+
+architecture Behavioral of SPI is
+begin
+   process
+   variable temp: std_logic_vector(15 downto 0); 
+   variable count: integer :=0;
+   begin
+      wait until rising_edge (clk);
+      temp := Input;
+      while count<8 loop 
+	temp(15) :=x;
+      if SPIE='0' then 
+         for i in 1 to 14 loop
+            temp(i+1) := temp(i);
+         end loop;
+         temp(0) := x;
+	count :=count+1;
+      end loop;
+      end if;
+      end loop;
+      SPIF<='1';
+      Output <= temp;
+    end process;
+SPDRM<=Output(7 downto 0);
+SPDRS<=Output(15 downto 8);
+end Behavioral;
+
+ variable temp: std_logic_vector(15 downto 0); 
+   variable count: integer :=0;
+   begin
+      wait until rising_edge (clk);
+      temp := Input;
+      while count<8 loop 
+			temp(15) :=x;
+			if SPIE='0' then 
+				for i in 1 to 14 loop
+					temp(i+1) := temp(i);
+				end loop;
+				temp(0) := x;
+				count :=count+1;
+			end if;
+      end loop;
+      SPIF<='1';
+      Output <= temp;
+end process;
+SPDRM<=Output(7 downto 0);
+SPDRS<=Output(15 downto 8);
